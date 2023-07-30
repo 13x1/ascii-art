@@ -5,6 +5,7 @@ import { resolve } from 'path';
 import { defineConfig } from 'vitest/config';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import p_json from './package.json';
 
 // relative to ./src/
 const exports = ['main.ts'];
@@ -17,7 +18,10 @@ export default defineConfig({
             formats: ['es', 'cjs']
         },
         sourcemap: true,
-        minify: false
+        minify: false,
+        rollupOptions: {
+            external: id => !!/^[a-zA-Z]$|^[a-zA-Z][^:]/.exec(id)  || !!Object.keys(p_json.dependencies).find(d => id.startsWith(d)),
+        }
     },
     plugins: [
         dts({

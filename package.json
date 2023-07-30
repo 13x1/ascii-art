@@ -1,5 +1,5 @@
 {
-    "name": "ts-template",
+    "name": "ascii-art",
     "version": "0.0.0",
     "files": [
         "dist"
@@ -36,5 +36,8 @@
             "import": "./dist/main.mjs",
             "require": "./dist/main.js"
         }
+    },
+    "dependencies": {
+        "kleur": "^4.1.5"
     }
 }
